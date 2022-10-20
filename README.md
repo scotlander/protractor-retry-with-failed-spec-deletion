@@ -6,8 +6,6 @@
  * Mocha & Jasmine are supported.
  * NEW : WINDOWS Support UPDATE : Windows as an env to launch with version 2.0.1
 
-
-
 <img src="https://user-images.githubusercontent.com/12041605/30343044-cd942a4c-97b0-11e7-850e-a7111996a554.png" align="center" height="75" width="600" /><br/><br/>
 
 This module fully relies on protractor available callbacks and internal functionalities.
@@ -28,23 +26,23 @@ The process of retrying is not happening on the fly of a test failure but only a
 #### Install
 
 ```
-npm i -g  protractor-retry
+npm i protractor-retry-with-failed-spec-deletion
 ```
 
 #### Step 1: Require the Package ( Your Protractor Config )
 ```js
-var retry = require('protractor-retry').retry;
+var retry = require('protractor-retry-with-failed-spec-deletion').retry;
 ```
 
 #### Step 2: onPrepare ( Your Protractor Config )
 ```js
-onPrepare: () => {
+onPrepare: function() {
   retry.onPrepare();
 }
 ```
 #### Step 3: onCleanUp ( Your Protractor Config )
 ```js
-onCleanUp = (results) => {
+onCleanUp = function(results) {
     retry.onCleanUp(results);
 };
 ```
@@ -52,8 +50,14 @@ It is Mandatory to provide the `results` to the retry.onCleanUp function
 
 #### Step 4: afterLaunch ( Your Protractor Config )
  ```js
-afterLaunch = () => {
+afterLaunch = function() {
     return retry.afterLaunch(NUMBER_OF_RETRIES);
+}
+```
+or with failed spec deletion
+ ```js
+afterLaunch = function() {
+    return retry.afterLaunch(NUMBER_OF_RETRIES, true, PATH_TO_FOLDER_WITH_JSON_TEST_RESULT_REPORTS);
 }
 ```
 It is Mandatory to use `return` here
