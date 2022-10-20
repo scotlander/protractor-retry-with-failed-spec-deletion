@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 2.1.2 (2022-10-20)
+
+
+### Bug Fixes
+
+* Protractor Config Link in README ([903d0a0](https://github.com/dmytro-rodionov-tes/protractor-retry-with-failed-spec-deletion/commit/903d0a0320bca09a0ca807c119a7a77f7307cb4e))
+
 ### 2.1.1 (2022-10-20)
 
 
