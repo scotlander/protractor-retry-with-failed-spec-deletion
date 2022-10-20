@@ -1,5 +1,5 @@
 {
-  "version": "2.1.1",
+  "version": "2.1.3",
   "name": "protractor-retry-with-failed-spec-deletion",
   "description": "module for protractor to automatically re-run failed tests with specific number of attempts",
   "main": "index.js",
@@ -9,7 +9,7 @@
   },
   "scripts": {
     "lint": "eslint .",
-    "webdriver-update": "webdriver-manager update --versions.chrome=106.0.5249.119",
+    "webdriver-update": "webdriver-manager update",
     "release": "standard-version",
     "test:mocha": "protractor test/protractor.mocha.conf.js",
     "test:jasmine": "protractor test/protractor.jasmine.conf.js",
