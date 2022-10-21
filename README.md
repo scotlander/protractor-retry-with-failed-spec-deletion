@@ -1,4 +1,10 @@
-## protractor-retry
+## protractor-retry-with-failed-spec-deletion
+
+The main benefit of the package has the option to delete failed specs before the subsequent re-run, so in the result, you will be able to create a full report of your run, and you will see there are not just failed tests but all the tests you ran.
+
+**You just need to pass additional parameters to the function afterLaunch.**
+It was tested only with Mocha. 
+
 
  * A solution to address the **flakiness** of your Protractor FE automation test suites.  
  * This module used protractor features to automatically re-run failed tests with a specific configurable number of attempts.
@@ -54,15 +60,32 @@ afterLaunch = function() {
     return retry.afterLaunch(NUMBER_OF_RETRIES);
 }
 ```
-or with failed spec deletion
+****
+**If you want to have a full report after your test run, you need to pass two additional parameters to afterLaunch to delete failed specs before re-run, so you have no doubling of your failed specs:**
  ```js
 afterLaunch = function() {
-    return retry.afterLaunch(NUMBER_OF_RETRIES, true, PATH_TO_FOLDER_WITH_JSON_TEST_RESULT_REPORTS);
+    return retry.afterLaunch(NUMBER_OF_RETRIES, true, PATH_TO_MOCHA_JSON_FOLDER_WITH_SPEC_REPORTS);
 }
 ```
 It is Mandatory to use `return` here
 
-#### Full Protractor Config snippet with 2 retries
+#### Full Protractor Config snippet with 2 retries and failed spec deletion before subsequent re-run:
+```js
+exports.config = {
+    // rest of your config
+    onCleanUp: (results) => {
+        retry.onCleanUp(results);
+    },
+    onPrepare: () => {
+        retry.onPrepare();
+    },
+    afterLaunch: () => {
+        return retry.afterLaunch(2, true, PATH_TO_MOCHA_JSON_FOLDER_WITH_SPEC_REPORTS);
+    }
+};
+```
+
+#### Full Protractor Config snippet with 2 retries:
 ```js
 exports.config = {
     // rest of your config
