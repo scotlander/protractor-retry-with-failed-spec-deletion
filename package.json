@@ -5,7 +5,7 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/dmytro-rodionov-tes/protractor-retry-with-failed-spec-deletion"
+    "url": "https://github.com/scotlander/protractor-retry-with-failed-spec-deletion"
   },
   "scripts": {
     "lint": "eslint .",
